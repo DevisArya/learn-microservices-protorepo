@@ -1,0 +1,67 @@
+syntax = "proto3";
+package user;
+
+option go_package = "github.com/DevisArya/learn-microservices-protorepo/pb/user";
+
+service UserService {
+    rpc GetUser (Id) returns (GetUserResponse);
+    rpc GetUsers (GetUsersRequest) returns (GetUsersResponse);
+    rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+    rpc UpdatePasswordUser (UpdatePasswordUserRequest) returns (StatusResponse);
+    rpc UpdateEmailUser (UpdateEmailUser) returns (StatusResponse);
+    rpc UpdateProfileUser (UpdateProfileUser) returns (StatusResponse);
+    rpc DeleteUser (Id) returns (StatusResponse);
+}
+
+message Id {
+    uint32 id = 1;
+}
+
+message User {
+    Id id = 1;
+    string name = 2;
+    string email = 3;
+    string password = 4;
+    string phone_number = 5;
+}
+
+message StatusResponse {
+    string message = 1;
+}
+
+message GetUserResponse {
+    User user = 1;
+}
+
+message GetUsersRequest {}
+
+message GetUsersResponse {
+    repeated User data = 1;
+}
+
+message CreateUserRequest {
+    string name = 2;
+    string email = 3;
+    string password = 4;
+    string phone_number = 5;
+}
+
+message CreateUserResponse {
+    Id id = 1;
+}
+
+message UpdatePasswordUserRequest {
+    Id id = 1;
+    string password = 2;
+}
+
+message UpdateEmailUser {
+    Id id = 1;
+    string email = 2;
+}
+
+message UpdateProfileUser {
+    Id id = 1;
+    string name = 2;
+    string phone_number = 3;
+}

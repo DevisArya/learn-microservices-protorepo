@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package shcedule;
+
+option go_package = "github.com/DevisArya/learn-microservices-protorepo/pb/schedule";
+
+service ScheduleService {
+    rpc GetSchedule (Id) returns (GetScheduleResponse);
+    rpc GetSchedules (GetSchedulesRequest) returns (GetSchedulesResponse);
+    rpc CreateSchedule (CreateScheduleRequest) returns (CreateScheduleResponse);
+    rpc UpdateSchedule (UpdateScheduleRequest) returns (StatusResponse);
+    rpc DeleteSchedule (Id) returns (StatusResponse);
+}
+
+message Schedule {
+    uint32 id = 1;
+    uint32 user_id = 2;
+    uint32 field_id = 3;
+    string date = 4;
+    string status = 5;
+}
+
+message Id {
+    uint32 id = 1;
+}
+
+message GetScheduleResponse {
+    Schedule schedule = 1;
+}
+
+message GetSchedulesRequest {}
+
+message GetSchedulesResponse {
+    repeated Schedule data = 1;
+}
+
+message CreateScheduleRequest {
+    uint32 user_id = 1;
+    uint32 field_id = 2;
+}
+
+message CreateScheduleResponse {
+    Id id = 1;
+}
+
+message UpdateScheduleRequest {
+    Id id = 1;
+    uint32 user_id = 2;
+    optional uint32 field_id = 3;
+    optional string date = 4;
+    optional string status = 5; 
+}
+
+message StatusResponse {
+    string message = 1;
+}
+
+
+
+

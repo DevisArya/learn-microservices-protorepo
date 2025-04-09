@@ -1,0 +1,29 @@
+syntax = "proto3";
+package transaction;
+
+option go_package = "github.com/DevisArya/learn-microservices-protorepo/pb/transaction";
+
+service TransactionService {
+    rpc CreateTransaction (CreateTransactionRequest) returns (CreateTransactionResponse);
+    rpc UpdateTransaction (UpdateTransactionRequest) returns (UpdateTransactionRespopnse);
+}
+
+message CreateTransactionRequest {
+    uint32 schedule_id = 1;
+}
+
+message CreateTransactionResponse {
+    string transaction_id = 1;
+    string payment_status = 2;
+    string payment_url = 3;
+}
+
+message UpdateTransactionRequest {
+    uint32 shcedule_id = 1;
+}
+
+message UpdateTransactionRespopnse {
+    string transaction_id = 1;
+    string payment_status = 2;
+    string updated_at = 3;
+}
