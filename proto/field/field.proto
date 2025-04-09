@@ -1,15 +1,12 @@
 syntax = "proto3";
-
 package field;
 
-import "pagination.proto";
-
+import "pagination/pagination.proto";
 
 option go_package = "github.com/DevisArya/learn-microservices-protorepo/pb/field";
 
-
 service FieldService {
-    rpc GetFields (Pagination) returns (GetFieldsResponse);
+    rpc GetFields (pagination.Pagination) returns (GetFieldsResponse);
     rpc GetField (Id) returns (GetFieldResponse);
     rpc CreateField (CreateFieldRequest) returns (CreateFieldResponse);
     rpc UpdateField (UpdateFieldRequest) returns (StatusResponse);
@@ -29,7 +26,7 @@ message Field {
 }
 
 message GetFieldsResponse {
-    Pagination pagination = 1;
+    pagination.Pagination pagination = 1;
     repeated Field data = 2;
 }
 

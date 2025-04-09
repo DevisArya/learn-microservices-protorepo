@@ -8,8 +8,8 @@ service UserService {
     rpc GetUsers (GetUsersRequest) returns (GetUsersResponse);
     rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
     rpc UpdatePasswordUser (UpdatePasswordUserRequest) returns (StatusResponse);
-    rpc UpdateEmailUser (UpdateEmailUser) returns (StatusResponse);
-    rpc UpdateProfileUser (UpdateProfileUser) returns (StatusResponse);
+    rpc UpdateEmailUser (UpdateEmailUserRequest) returns (StatusResponse);
+    rpc UpdateProfileUser (UpdateProfileUserRequest) returns (StatusResponse);
     rpc DeleteUser (Id) returns (StatusResponse);
 }
 
@@ -55,12 +55,12 @@ message UpdatePasswordUserRequest {
     string password = 2;
 }
 
-message UpdateEmailUser {
+message UpdateEmailUserRequest {
     Id id = 1;
     string email = 2;
 }
 
-message UpdateProfileUser {
+message UpdateProfileUserRequest {
     Id id = 1;
     string name = 2;
     string phone_number = 3;

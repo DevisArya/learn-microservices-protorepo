@@ -1,7 +1,7 @@
 PROTO_DIR=proto
 OUT_DIR=pb
 
-PROTO_FILES=$(PROTO_DIR)/field.proto $(PROTO_DIR)/pagination.proto
+PROTO_FILES=$(PROTO_DIR)/pagination/pagination.proto $(PROTO_DIR)/field/field.proto
 
 generate:
 	protoc --proto_path=$(PROTO_DIR) \
