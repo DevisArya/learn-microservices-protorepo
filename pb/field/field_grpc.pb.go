@@ -8,7 +8,6 @@ package field
 
 import (
 	context "context"
-	pagination "github.com/DevisArya/learn-microservices-protorepo/pb/pagination"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -31,7 +30,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FieldServiceClient interface {
-	GetFields(ctx context.Context, in *pagination.Pagination, opts ...grpc.CallOption) (*GetFieldsResponse, error)
+	GetFields(ctx context.Context, in *GetFieldsRequest, opts ...grpc.CallOption) (*GetFieldsResponse, error)
 	GetField(ctx context.Context, in *Id, opts ...grpc.CallOption) (*GetFieldResponse, error)
 	CreateField(ctx context.Context, in *CreateFieldRequest, opts ...grpc.CallOption) (*CreateFieldResponse, error)
 	UpdateField(ctx context.Context, in *UpdateFieldRequest, opts ...grpc.CallOption) (*StatusResponse, error)
@@ -46,7 +45,7 @@ func NewFieldServiceClient(cc grpc.ClientConnInterface) FieldServiceClient {
 	return &fieldServiceClient{cc}
 }
 
-func (c *fieldServiceClient) GetFields(ctx context.Context, in *pagination.Pagination, opts ...grpc.CallOption) (*GetFieldsResponse, error) {
+func (c *fieldServiceClient) GetFields(ctx context.Context, in *GetFieldsRequest, opts ...grpc.CallOption) (*GetFieldsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetFieldsResponse)
 	err := c.cc.Invoke(ctx, FieldService_GetFields_FullMethodName, in, out, cOpts...)
@@ -100,7 +99,7 @@ func (c *fieldServiceClient) DeleteField(ctx context.Context, in *Id, opts ...gr
 // All implementations must embed UnimplementedFieldServiceServer
 // for forward compatibility.
 type FieldServiceServer interface {
-	GetFields(context.Context, *pagination.Pagination) (*GetFieldsResponse, error)
+	GetFields(context.Context, *GetFieldsRequest) (*GetFieldsResponse, error)
 	GetField(context.Context, *Id) (*GetFieldResponse, error)
 	CreateField(context.Context, *CreateFieldRequest) (*CreateFieldResponse, error)
 	UpdateField(context.Context, *UpdateFieldRequest) (*StatusResponse, error)
@@ -115,7 +114,7 @@ type FieldServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedFieldServiceServer struct{}
 
-func (UnimplementedFieldServiceServer) GetFields(context.Context, *pagination.Pagination) (*GetFieldsResponse, error) {
+func (UnimplementedFieldServiceServer) GetFields(context.Context, *GetFieldsRequest) (*GetFieldsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFields not implemented")
 }
 func (UnimplementedFieldServiceServer) GetField(context.Context, *Id) (*GetFieldResponse, error) {
@@ -152,7 +151,7 @@ func RegisterFieldServiceServer(s grpc.ServiceRegistrar, srv FieldServiceServer)
 }
 
 func _FieldService_GetFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pagination.Pagination)
+	in := new(GetFieldsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -164,7 +163,7 @@ func _FieldService_GetFields_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: FieldService_GetFields_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FieldServiceServer).GetFields(ctx, req.(*pagination.Pagination))
+		return srv.(FieldServiceServer).GetFields(ctx, req.(*GetFieldsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

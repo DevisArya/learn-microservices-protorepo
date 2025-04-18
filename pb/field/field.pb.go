@@ -66,6 +66,58 @@ func (x *Id) GetId() uint32 {
 	return 0
 }
 
+type GetFieldsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Page          uint32                 `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	Limit         uint32                 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFieldsRequest) Reset() {
+	*x = GetFieldsRequest{}
+	mi := &file_field_field_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFieldsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFieldsRequest) ProtoMessage() {}
+
+func (x *GetFieldsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_field_field_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFieldsRequest.ProtoReflect.Descriptor instead.
+func (*GetFieldsRequest) Descriptor() ([]byte, []int) {
+	return file_field_field_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *GetFieldsRequest) GetPage() uint32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GetFieldsRequest) GetLimit() uint32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
 type Field struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -79,7 +131,7 @@ type Field struct {
 
 func (x *Field) Reset() {
 	*x = Field{}
-	mi := &file_field_field_proto_msgTypes[1]
+	mi := &file_field_field_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -91,7 +143,7 @@ func (x *Field) String() string {
 func (*Field) ProtoMessage() {}
 
 func (x *Field) ProtoReflect() protoreflect.Message {
-	mi := &file_field_field_proto_msgTypes[1]
+	mi := &file_field_field_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -104,7 +156,7 @@ func (x *Field) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Field.ProtoReflect.Descriptor instead.
 func (*Field) Descriptor() ([]byte, []int) {
-	return file_field_field_proto_rawDescGZIP(), []int{1}
+	return file_field_field_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Field) GetId() uint32 {
@@ -152,7 +204,7 @@ type GetFieldsResponse struct {
 
 func (x *GetFieldsResponse) Reset() {
 	*x = GetFieldsResponse{}
-	mi := &file_field_field_proto_msgTypes[2]
+	mi := &file_field_field_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -164,7 +216,7 @@ func (x *GetFieldsResponse) String() string {
 func (*GetFieldsResponse) ProtoMessage() {}
 
 func (x *GetFieldsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_field_field_proto_msgTypes[2]
+	mi := &file_field_field_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -177,7 +229,7 @@ func (x *GetFieldsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFieldsResponse.ProtoReflect.Descriptor instead.
 func (*GetFieldsResponse) Descriptor() ([]byte, []int) {
-	return file_field_field_proto_rawDescGZIP(), []int{2}
+	return file_field_field_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetFieldsResponse) GetPagination() *pagination.Pagination {
@@ -203,7 +255,7 @@ type GetFieldResponse struct {
 
 func (x *GetFieldResponse) Reset() {
 	*x = GetFieldResponse{}
-	mi := &file_field_field_proto_msgTypes[3]
+	mi := &file_field_field_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -215,7 +267,7 @@ func (x *GetFieldResponse) String() string {
 func (*GetFieldResponse) ProtoMessage() {}
 
 func (x *GetFieldResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_field_field_proto_msgTypes[3]
+	mi := &file_field_field_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -228,7 +280,7 @@ func (x *GetFieldResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFieldResponse.ProtoReflect.Descriptor instead.
 func (*GetFieldResponse) Descriptor() ([]byte, []int) {
-	return file_field_field_proto_rawDescGZIP(), []int{3}
+	return file_field_field_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetFieldResponse) GetField() *Field {
@@ -250,7 +302,7 @@ type CreateFieldRequest struct {
 
 func (x *CreateFieldRequest) Reset() {
 	*x = CreateFieldRequest{}
-	mi := &file_field_field_proto_msgTypes[4]
+	mi := &file_field_field_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -262,7 +314,7 @@ func (x *CreateFieldRequest) String() string {
 func (*CreateFieldRequest) ProtoMessage() {}
 
 func (x *CreateFieldRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_field_field_proto_msgTypes[4]
+	mi := &file_field_field_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -275,7 +327,7 @@ func (x *CreateFieldRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateFieldRequest.ProtoReflect.Descriptor instead.
 func (*CreateFieldRequest) Descriptor() ([]byte, []int) {
-	return file_field_field_proto_rawDescGZIP(), []int{4}
+	return file_field_field_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *CreateFieldRequest) GetName() string {
@@ -316,7 +368,7 @@ type CreateFieldResponse struct {
 
 func (x *CreateFieldResponse) Reset() {
 	*x = CreateFieldResponse{}
-	mi := &file_field_field_proto_msgTypes[5]
+	mi := &file_field_field_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -328,7 +380,7 @@ func (x *CreateFieldResponse) String() string {
 func (*CreateFieldResponse) ProtoMessage() {}
 
 func (x *CreateFieldResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_field_field_proto_msgTypes[5]
+	mi := &file_field_field_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -341,7 +393,7 @@ func (x *CreateFieldResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateFieldResponse.ProtoReflect.Descriptor instead.
 func (*CreateFieldResponse) Descriptor() ([]byte, []int) {
-	return file_field_field_proto_rawDescGZIP(), []int{5}
+	return file_field_field_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *CreateFieldResponse) GetId() uint32 {
@@ -371,7 +423,7 @@ type UpdateFieldRequest struct {
 
 func (x *UpdateFieldRequest) Reset() {
 	*x = UpdateFieldRequest{}
-	mi := &file_field_field_proto_msgTypes[6]
+	mi := &file_field_field_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -383,7 +435,7 @@ func (x *UpdateFieldRequest) String() string {
 func (*UpdateFieldRequest) ProtoMessage() {}
 
 func (x *UpdateFieldRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_field_field_proto_msgTypes[6]
+	mi := &file_field_field_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -396,7 +448,7 @@ func (x *UpdateFieldRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFieldRequest.ProtoReflect.Descriptor instead.
 func (*UpdateFieldRequest) Descriptor() ([]byte, []int) {
-	return file_field_field_proto_rawDescGZIP(), []int{6}
+	return file_field_field_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UpdateFieldRequest) GetId() uint32 {
@@ -443,7 +495,7 @@ type StatusResponse struct {
 
 func (x *StatusResponse) Reset() {
 	*x = StatusResponse{}
-	mi := &file_field_field_proto_msgTypes[7]
+	mi := &file_field_field_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -455,7 +507,7 @@ func (x *StatusResponse) String() string {
 func (*StatusResponse) ProtoMessage() {}
 
 func (x *StatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_field_field_proto_msgTypes[7]
+	mi := &file_field_field_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -468,7 +520,7 @@ func (x *StatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StatusResponse.ProtoReflect.Descriptor instead.
 func (*StatusResponse) Descriptor() ([]byte, []int) {
-	return file_field_field_proto_rawDescGZIP(), []int{7}
+	return file_field_field_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *StatusResponse) GetMessage() string {
@@ -484,7 +536,10 @@ const file_field_field_proto_rawDesc = "" +
 	"\n" +
 	"\x11field/field.proto\x12\x05field\x1a\x1bpagination/pagination.proto\"\x14\n" +
 	"\x02Id\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\"w\n" +
+	"\x02id\x18\x01 \x01(\rR\x02id\"<\n" +
+	"\x10GetFieldsRequest\x12\x12\n" +
+	"\x04page\x18\x01 \x01(\rR\x04page\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\rR\x05limit\"w\n" +
 	"\x05Field\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -517,9 +572,9 @@ const file_field_field_proto_rawDesc = "" +
 	"\f_descriptionB\b\n" +
 	"\x06_price\"*\n" +
 	"\x0eStatusResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2\xb5\x02\n" +
-	"\fFieldService\x12=\n" +
-	"\tGetFields\x12\x16.pagination.Pagination\x1a\x18.field.GetFieldsResponse\x12.\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage2\xb6\x02\n" +
+	"\fFieldService\x12>\n" +
+	"\tGetFields\x12\x17.field.GetFieldsRequest\x1a\x18.field.GetFieldsResponse\x12.\n" +
 	"\bGetField\x12\t.field.Id\x1a\x17.field.GetFieldResponse\x12D\n" +
 	"\vCreateField\x12\x19.field.CreateFieldRequest\x1a\x1a.field.CreateFieldResponse\x12?\n" +
 	"\vUpdateField\x12\x19.field.UpdateFieldRequest\x1a\x15.field.StatusResponse\x12/\n" +
@@ -537,32 +592,33 @@ func file_field_field_proto_rawDescGZIP() []byte {
 	return file_field_field_proto_rawDescData
 }
 
-var file_field_field_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_field_field_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_field_field_proto_goTypes = []any{
 	(*Id)(nil),                    // 0: field.Id
-	(*Field)(nil),                 // 1: field.Field
-	(*GetFieldsResponse)(nil),     // 2: field.GetFieldsResponse
-	(*GetFieldResponse)(nil),      // 3: field.GetFieldResponse
-	(*CreateFieldRequest)(nil),    // 4: field.CreateFieldRequest
-	(*CreateFieldResponse)(nil),   // 5: field.CreateFieldResponse
-	(*UpdateFieldRequest)(nil),    // 6: field.UpdateFieldRequest
-	(*StatusResponse)(nil),        // 7: field.StatusResponse
-	(*pagination.Pagination)(nil), // 8: pagination.Pagination
+	(*GetFieldsRequest)(nil),      // 1: field.GetFieldsRequest
+	(*Field)(nil),                 // 2: field.Field
+	(*GetFieldsResponse)(nil),     // 3: field.GetFieldsResponse
+	(*GetFieldResponse)(nil),      // 4: field.GetFieldResponse
+	(*CreateFieldRequest)(nil),    // 5: field.CreateFieldRequest
+	(*CreateFieldResponse)(nil),   // 6: field.CreateFieldResponse
+	(*UpdateFieldRequest)(nil),    // 7: field.UpdateFieldRequest
+	(*StatusResponse)(nil),        // 8: field.StatusResponse
+	(*pagination.Pagination)(nil), // 9: pagination.Pagination
 }
 var file_field_field_proto_depIdxs = []int32{
-	8, // 0: field.GetFieldsResponse.pagination:type_name -> pagination.Pagination
-	1, // 1: field.GetFieldsResponse.data:type_name -> field.Field
-	1, // 2: field.GetFieldResponse.field:type_name -> field.Field
-	8, // 3: field.FieldService.GetFields:input_type -> pagination.Pagination
+	9, // 0: field.GetFieldsResponse.pagination:type_name -> pagination.Pagination
+	2, // 1: field.GetFieldsResponse.data:type_name -> field.Field
+	2, // 2: field.GetFieldResponse.field:type_name -> field.Field
+	1, // 3: field.FieldService.GetFields:input_type -> field.GetFieldsRequest
 	0, // 4: field.FieldService.GetField:input_type -> field.Id
-	4, // 5: field.FieldService.CreateField:input_type -> field.CreateFieldRequest
-	6, // 6: field.FieldService.UpdateField:input_type -> field.UpdateFieldRequest
+	5, // 5: field.FieldService.CreateField:input_type -> field.CreateFieldRequest
+	7, // 6: field.FieldService.UpdateField:input_type -> field.UpdateFieldRequest
 	0, // 7: field.FieldService.DeleteField:input_type -> field.Id
-	2, // 8: field.FieldService.GetFields:output_type -> field.GetFieldsResponse
-	3, // 9: field.FieldService.GetField:output_type -> field.GetFieldResponse
-	5, // 10: field.FieldService.CreateField:output_type -> field.CreateFieldResponse
-	7, // 11: field.FieldService.UpdateField:output_type -> field.StatusResponse
-	7, // 12: field.FieldService.DeleteField:output_type -> field.StatusResponse
+	3, // 8: field.FieldService.GetFields:output_type -> field.GetFieldsResponse
+	4, // 9: field.FieldService.GetField:output_type -> field.GetFieldResponse
+	6, // 10: field.FieldService.CreateField:output_type -> field.CreateFieldResponse
+	8, // 11: field.FieldService.UpdateField:output_type -> field.StatusResponse
+	8, // 12: field.FieldService.DeleteField:output_type -> field.StatusResponse
 	8, // [8:13] is the sub-list for method output_type
 	3, // [3:8] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
@@ -575,14 +631,14 @@ func file_field_field_proto_init() {
 	if File_field_field_proto != nil {
 		return
 	}
-	file_field_field_proto_msgTypes[6].OneofWrappers = []any{}
+	file_field_field_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_field_field_proto_rawDesc), len(file_field_field_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
