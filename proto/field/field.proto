@@ -14,11 +14,11 @@ service FieldService {
 }
 
 message Id {
-    string id = 1;
+    uint32 id = 1;
 }
 
 message Field {
-    string id = 1;
+    uint32 id = 1;
     string name = 2;
     string type = 3;
     string description = 4;
@@ -41,13 +41,12 @@ message CreateFieldRequest {
     uint64 price = 4;
 }
 message CreateFieldResponse {
-    string id = 1;
-    string status = 2;
-    string message = 3;
+    uint32 id = 1;
+    string message = 2;
 }
 
 message UpdateFieldRequest {
-    string id = 1;
+    uint32 id = 1;
     optional string name = 2;
     optional string type = 3;
     optional string description = 4;
@@ -55,8 +54,7 @@ message UpdateFieldRequest {
 }
 
 message StatusResponse {
-    string status = 1;
-    string message = 2;
+    string message = 1;
 }
 
 
