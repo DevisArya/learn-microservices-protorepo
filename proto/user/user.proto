@@ -1,6 +1,7 @@
 syntax = "proto3";
 package user;
 
+import "pagination/pagination.proto";
 option go_package = "github.com/DevisArya/learn-microservices-protorepo/pb/user";
 
 service UserService {
@@ -33,10 +34,14 @@ message GetUserResponse {
     User user = 1;
 }
 
-message GetUsersRequest {}
+message GetUsersRequest {
+    uint32 page = 1;
+    uint32 limit = 2;
+}
 
 message GetUsersResponse {
-    repeated User data = 1;
+    pagination.Pagination pagination = 1;
+    repeated User data = 2;
 }
 
 message CreateUserRequest {

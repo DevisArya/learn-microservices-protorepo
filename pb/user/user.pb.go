@@ -7,6 +7,7 @@
 package user
 
 import (
+	pagination "github.com/DevisArya/learn-microservices-protorepo/pb/pagination"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -231,6 +232,8 @@ func (x *GetUserResponse) GetUser() *User {
 
 type GetUsersRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Page          uint32                 `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	Limit         uint32                 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -265,9 +268,24 @@ func (*GetUsersRequest) Descriptor() ([]byte, []int) {
 	return file_user_user_proto_rawDescGZIP(), []int{4}
 }
 
+func (x *GetUsersRequest) GetPage() uint32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GetUsersRequest) GetLimit() uint32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
 type GetUsersResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Data          []*User                `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	Pagination    *pagination.Pagination `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	Data          []*User                `protobuf:"bytes,2,rep,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -300,6 +318,13 @@ func (x *GetUsersResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use GetUsersResponse.ProtoReflect.Descriptor instead.
 func (*GetUsersResponse) Descriptor() ([]byte, []int) {
 	return file_user_user_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetUsersResponse) GetPagination() *pagination.Pagination {
+	if x != nil {
+		return x.Pagination
+	}
+	return nil
 }
 
 func (x *GetUsersResponse) GetData() []*User {
@@ -589,7 +614,7 @@ var File_user_user_proto protoreflect.FileDescriptor
 
 const file_user_user_proto_rawDesc = "" +
 	"\n" +
-	"\x0fuser/user.proto\x12\x04user\"\x14\n" +
+	"\x0fuser/user.proto\x12\x04user\x1a\x1bpagination/pagination.proto\"\x14\n" +
 	"\x02Id\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\"\x89\x01\n" +
 	"\x04User\x12\x18\n" +
@@ -602,10 +627,15 @@ const file_user_user_proto_rawDesc = "" +
 	"\amessage\x18\x01 \x01(\tR\amessage\"1\n" +
 	"\x0fGetUserResponse\x12\x1e\n" +
 	"\x04user\x18\x01 \x01(\v2\n" +
-	".user.UserR\x04user\"\x11\n" +
-	"\x0fGetUsersRequest\"2\n" +
-	"\x10GetUsersResponse\x12\x1e\n" +
-	"\x04data\x18\x01 \x03(\v2\n" +
+	".user.UserR\x04user\";\n" +
+	"\x0fGetUsersRequest\x12\x12\n" +
+	"\x04page\x18\x01 \x01(\rR\x04page\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\rR\x05limit\"j\n" +
+	"\x10GetUsersResponse\x126\n" +
+	"\n" +
+	"pagination\x18\x01 \x01(\v2\x16.pagination.PaginationR\n" +
+	"pagination\x12\x1e\n" +
+	"\x04data\x18\x02 \x03(\v2\n" +
 	".user.UserR\x04data\"|\n" +
 	"\x11CreateUserRequest\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
@@ -660,34 +690,36 @@ var file_user_user_proto_goTypes = []any{
 	(*UpdatePasswordUserRequest)(nil), // 8: user.UpdatePasswordUserRequest
 	(*UpdateEmailUserRequest)(nil),    // 9: user.UpdateEmailUserRequest
 	(*UpdateProfileUserRequest)(nil),  // 10: user.UpdateProfileUserRequest
+	(*pagination.Pagination)(nil),     // 11: pagination.Pagination
 }
 var file_user_user_proto_depIdxs = []int32{
 	0,  // 0: user.User.id:type_name -> user.Id
 	1,  // 1: user.GetUserResponse.user:type_name -> user.User
-	1,  // 2: user.GetUsersResponse.data:type_name -> user.User
-	0,  // 3: user.CreateUserResponse.id:type_name -> user.Id
-	0,  // 4: user.UpdatePasswordUserRequest.id:type_name -> user.Id
-	0,  // 5: user.UpdateEmailUserRequest.id:type_name -> user.Id
-	0,  // 6: user.UpdateProfileUserRequest.id:type_name -> user.Id
-	0,  // 7: user.UserService.GetUser:input_type -> user.Id
-	4,  // 8: user.UserService.GetUsers:input_type -> user.GetUsersRequest
-	6,  // 9: user.UserService.CreateUser:input_type -> user.CreateUserRequest
-	8,  // 10: user.UserService.UpdatePasswordUser:input_type -> user.UpdatePasswordUserRequest
-	9,  // 11: user.UserService.UpdateEmailUser:input_type -> user.UpdateEmailUserRequest
-	10, // 12: user.UserService.UpdateProfileUser:input_type -> user.UpdateProfileUserRequest
-	0,  // 13: user.UserService.DeleteUser:input_type -> user.Id
-	3,  // 14: user.UserService.GetUser:output_type -> user.GetUserResponse
-	5,  // 15: user.UserService.GetUsers:output_type -> user.GetUsersResponse
-	7,  // 16: user.UserService.CreateUser:output_type -> user.CreateUserResponse
-	2,  // 17: user.UserService.UpdatePasswordUser:output_type -> user.StatusResponse
-	2,  // 18: user.UserService.UpdateEmailUser:output_type -> user.StatusResponse
-	2,  // 19: user.UserService.UpdateProfileUser:output_type -> user.StatusResponse
-	2,  // 20: user.UserService.DeleteUser:output_type -> user.StatusResponse
-	14, // [14:21] is the sub-list for method output_type
-	7,  // [7:14] is the sub-list for method input_type
-	7,  // [7:7] is the sub-list for extension type_name
-	7,  // [7:7] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	11, // 2: user.GetUsersResponse.pagination:type_name -> pagination.Pagination
+	1,  // 3: user.GetUsersResponse.data:type_name -> user.User
+	0,  // 4: user.CreateUserResponse.id:type_name -> user.Id
+	0,  // 5: user.UpdatePasswordUserRequest.id:type_name -> user.Id
+	0,  // 6: user.UpdateEmailUserRequest.id:type_name -> user.Id
+	0,  // 7: user.UpdateProfileUserRequest.id:type_name -> user.Id
+	0,  // 8: user.UserService.GetUser:input_type -> user.Id
+	4,  // 9: user.UserService.GetUsers:input_type -> user.GetUsersRequest
+	6,  // 10: user.UserService.CreateUser:input_type -> user.CreateUserRequest
+	8,  // 11: user.UserService.UpdatePasswordUser:input_type -> user.UpdatePasswordUserRequest
+	9,  // 12: user.UserService.UpdateEmailUser:input_type -> user.UpdateEmailUserRequest
+	10, // 13: user.UserService.UpdateProfileUser:input_type -> user.UpdateProfileUserRequest
+	0,  // 14: user.UserService.DeleteUser:input_type -> user.Id
+	3,  // 15: user.UserService.GetUser:output_type -> user.GetUserResponse
+	5,  // 16: user.UserService.GetUsers:output_type -> user.GetUsersResponse
+	7,  // 17: user.UserService.CreateUser:output_type -> user.CreateUserResponse
+	2,  // 18: user.UserService.UpdatePasswordUser:output_type -> user.StatusResponse
+	2,  // 19: user.UserService.UpdateEmailUser:output_type -> user.StatusResponse
+	2,  // 20: user.UserService.UpdateProfileUser:output_type -> user.StatusResponse
+	2,  // 21: user.UserService.DeleteUser:output_type -> user.StatusResponse
+	15, // [15:22] is the sub-list for method output_type
+	8,  // [8:15] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_user_user_proto_init() }
